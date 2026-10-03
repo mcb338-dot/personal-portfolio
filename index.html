@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Personal portfolio website for Marco Bassora, Rutgers Business School Finance student and EMT." />
+  <title>Marco Bassora | Portfolio</title>
+  <style>
+    :root {
+      --bg: #f7f9fc;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #5c677d;
+      --accent: #1f5eff;
+      --accent-dark: #1746bf;
+      --border: #e3e8f0;
+      --shadow: 0 10px 30px rgba(20, 35, 70, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: 0 auto;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-weight: 800;
+      font-size: 1.08rem;
+      letter-spacing: 0.2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.94rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    header {
+      padding: 90px 0 70px;
+      background: linear-gradient(135deg, #eef3ff 0%, #ffffff 65%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.45fr 0.8fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      font-size: 0.82rem;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4.6rem);
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    .intro {
+      font-size: 1.22rem;
+      color: var(--muted);
+      max-width: 720px;
+      margin-bottom: 28px;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 12px 18px;
+      border-radius: 9px;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--text);
+      border-color: var(--border);
+    }
+
+    .profile-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .profile-card h2 {
+      margin-bottom: 12px;
+      font-size: 1.25rem;
+    }
+
+    .profile-card p {
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    section {
+      padding: 72px 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      margin-bottom: 30px;
+      max-width: 760px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .skill {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      font-weight: 700;
+      text-align: center;
+      box-shadow: 0 4px 14px rgba(20, 35, 70, 0.04);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      min-height: 260px;
+    }
+
+    .project-card h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .tag {
+      background: #eef3ff;
+      color: #214aa6;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .reference {
+      margin-top: 16px;
+      font-size: 0.88rem;
+      color: #667085;
+    }
+
+    .contact-box {
+      background: var(--text);
+      color: white;
+      border-radius: 18px;
+      padding: 34px;
+    }
+
+    .contact-box p {
+      color: #d7deea;
+      margin-top: 8px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0 40px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 850px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .nav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 0;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        padding-top: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <div class="brand">Marco Bassora</div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+      </div>
+    </div>
+  </nav>
+
+  <header id="about">
+    <div class="container hero">
+      <div>
+        <div class="eyebrow">Finance • Business • Emergency Medical Services</div>
+        <h1>Marco Bassora</h1>
+
+        <!-- PERSONAL STATEMENT: one clear sentence, as required by the rubric -->
+        <p class="intro">
+          I am a Rutgers Business School Finance student and EMT who combines analytical thinking,
+          teamwork, and problem-solving to contribute in fast-paced professional environments.
+        </p>
+
+        <div class="button-row">
+          <a class="btn btn-primary" href="#projects">View My Projects</a>
+          <a class="btn btn-secondary" href="#skills">See My Skills</a>
+        </div>
+      </div>
+
+      <aside class="profile-card">
+        <h2>Quick Profile</h2>
+        <p><strong>School:</strong> Rutgers Business School</p>
+        <p><strong>Major:</strong> Finance</p>
+        <p><strong>Focus:</strong> Financial analysis, business technology, and data-driven decision making</p>
+        <p><strong>Additional Experience:</strong> Nationally Registered EMT</p>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <p class="section-subtitle">
+          A combination of technical, analytical, and professional skills relevant to finance and business roles.
+        </p>
+
+        <div class="skills-grid">
+          <div class="skill">Microsoft Excel</div>
+          <div class="skill">Financial Analysis</div>
+          <div class="skill">MySQL</div>
+          <div class="skill">Database Design</div>
+          <div class="skill">PowerPoint</div>
+          <div class="skill">Research</div>
+          <div class="skill">Teamwork</div>
+          <div class="skill">Communication</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title">Projects</h2>
+        <p class="section-subtitle">
+          Selected academic and personal projects that demonstrate business, finance, and information-systems skills.
+        </p>
+
+        <div class="projects-grid">
+          <article class="project-card">
+            <h3>Relational Database Design Project</h3>
+            <p>
+              Designed a relational database structure using entities, primary keys, foreign keys, and
+              one-to-many/many-to-many relationships. The project emphasized translating business
+              requirements into an organized database model.
+            </p>
+            <div class="tags">
+              <span class="tag">MySQL</span>
+              <span class="tag">ERD</span>
+              <span class="tag">Database Design</span>
+            </div>
+            <div class="reference">Reference: Rutgers MIS coursework</div>
+          </article>
+
+          <article class="project-card">
+            <h3>ETF Portfolio Analysis</h3>
+            <p>
+              Compared growth-oriented exchange-traded funds using historical performance, sector
+              concentration, risk, and diversification. The analysis focused on how portfolio
+              allocation can affect long-term risk and return.
+            </p>
+            <div class="tags">
+              <span class="tag">Finance</span>
+              <span class="tag">Excel</span>
+              <span class="tag">Investment Analysis</span>
+            </div>
+            <div class="reference">Reference: Independent finance analysis</div>
+          </article>
+
+          <article class="project-card">
+            <h3>Business Case Analysis</h3>
+            <p>
+              Evaluated a business decision using stakeholder impacts, ethical considerations,
+              supporting evidence, and a structured recommendation. The project strengthened written
+              communication and evidence-based decision-making skills.
+            </p>
+            <div class="tags">
+              <span class="tag">Research</span>
+              <span class="tag">Business Ethics</span>
+              <span class="tag">Communication</span>
+            </div>
+            <div class="reference">Reference: Rutgers business coursework</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="contact-box">
+          <h2>Thanks for visiting my portfolio.</h2>
+          <p>
+            This site highlights my professional background, skills, and selected projects.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Marco Bassora • Personal Portfolio
+    </div>
+  </footer>
+</body>
+</html>
